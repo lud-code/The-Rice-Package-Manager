@@ -13,5 +13,5 @@ How to remove a pkg [removes pkg and orphans]:
 ## How to Add A Package
 The package file format is organized as followed:
 * COMPILE OR INTERPRET?
-* LINK, e.x., https://github.com/ex/project/archive/refs/head/main.zip
+* LINK, e.g., https://github.com/example/project/archive/refs/head/main.zip
 * DEPENDENCY NAME: DEPENDENCY LINK [put all of them]
