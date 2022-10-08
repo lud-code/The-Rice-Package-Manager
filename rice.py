@@ -1,21 +1,17 @@
 #!/usr/bin/env python
 
 from argparse import ArgumentParser
-from cmds import install, uninstall, CWD, INSTALLED, REPO
+from cmds import install, uninstall, CWD, INSTALL, REPO
 from os import path, mkdir
 
 parser = ArgumentParser(description="A little package manager.")
-parser.add_argument(
-    "-i", default=False, dest="i_target", help="Install a package."
-)
-parser.add_argument(
-    "-u", default=False, dest="u_target", help="Uninstall a package"
-)
+parser.add_argument("-i", default=False, dest="i_target", help="Install a package.")
+parser.add_argument("-u", default=False, dest="u_target", help="Uninstall a package")
 args = parser.parse_args()
 
 
 def main():
-    if not path.exists(INSTALLED):
+    if not path.exists(INSTALL):
         print("NOTIF! CREATING INSTALLED DIRECTORY...")
         mkdir(INSTALLED)
 
