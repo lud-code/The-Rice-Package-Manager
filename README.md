@@ -1,5 +1,5 @@
 # The Rice Package Manager
-### The creation of this was redundant.
+### Creating this is redundant.
 
 ## How to Use
 To install a pkg:
