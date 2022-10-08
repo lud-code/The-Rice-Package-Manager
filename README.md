@@ -14,4 +14,4 @@ How to remove a pkg [removes pkg and orphans]:
 The package file format is organized as followed:
 * COMPILE OR INTERPRET?
 * LINK, e.x., https://github.com/ex/project/archive/refs/head/main.zip
-* DEPENDECY LINKS [put all of them]
+* DEPENDENCY NAME: DEPENDENCY LINK [put all of them]
