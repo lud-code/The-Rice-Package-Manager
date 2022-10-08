@@ -10,7 +10,6 @@ REPO = f"{CWD}/repo/"
 def extract(file):
     with ZipFile(f"{INSTALL}/{file}.zip", "r") as zip:
         dir = zip.namelist()[0]
-        print(dir)
         zip.extractall(f"{INSTALL}")
         rename(f"{INSTALL}/{dir}", f"{INSTALL}/{file}")
 
