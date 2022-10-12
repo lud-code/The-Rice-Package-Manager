@@ -12,8 +12,8 @@ How to remove a pkg [removes pkg and orphans]:
 
 ## How to Add A Package
 The package file format is organized as followed:
-* COMPILE OR INTERPRET?
-* LINK, e.g., https://github.com/example/project/archive/refs/head/main.zip
-* DEPENDENCY LINKS
+* (C/I) COMPILE OR INTERPRET TARG FILE (LIKE A MAKE FILE)
+* LINK
+* (C/I) | DEPEND NAMES | DEPENDENCY LINKS
 
 NOTE: Currently, it only supports ".zip" files as of now (12/10/22). 
