@@ -15,10 +15,17 @@ How to remove a pkg [removes pkg and orphans]:
 ## How to Add A Package
 
 The package file format is organized as followed:
-> RUN CMD
-> LINK
-> COMPILE CMD
-DEPENDENCIES:
-> NAME | RUN CMD | LINK | COMPILE CMD
+> RUN CMD </br>
+> LINK </br>
+> COMPILE CMD </br>
+> DEPEND NAME | RUN CMD | LINK | COMPILE CMD
 
 NOTE: Currently, it only supports ".zip" files as of now (12/10/22).
+
+## Edit Config File
+
+Settings are:
+
+USE SUDO? (Y/N)
+
+CREATE EXEC SCRIPT? (Y/N)

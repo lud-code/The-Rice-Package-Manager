@@ -16,22 +16,23 @@ def extract(file, link):
         if reinst == "y" or reinst == "Y":
             rmtree(f"{INSTALL}/{file}")
 
-            open(file, "wb").write(get(link).content)
+        else:
+            exit()
 
-            with ZipFile(f"{INSTALL}/{file}.zip", "r") as zip:
-                dir = zip.namelist()[0]
-                zip.extractall(f"{INSTALL}")
-                rename(f"{INSTALL}/{dir}", f"{INSTALL}/{file}")
-                remove(f"{INSTALL}/{file}.zip")
+    open(file, "wb").write(get(link).content)
+
+    with ZipFile(f"{INSTALL}/{file}.zip", "r") as zip:
+        dir = zip.namelist()[0]
+        zip.extractall(f"{INSTALL}")
+        rename(f"{INSTALL}/{dir}", f"{INSTALL}/{file}")
+        remove(f"{INSTALL}/{file}.zip")
 
 
 def fix(cmd, name, run):
     if cmd != "NA":
-        system(f"cd {INSTALL}/{name} & sudo {cmd}")
+        system(f"cd {INSTALL}/{name} & {cmd}")
 
-    open(f"/usr/bin/{name}", "w").write(
-        f"#!/usr/bin/env bash\n{run}"
-    )
+    open(f"/usr/bin/{name}", "w").write(f"#!/usr/bin/env bash\n{run}")
     system(f"sudo chmod +x /usr/bin/{name}")
 
 
@@ -62,4 +63,9 @@ def install(targ):
 
 
 def uninstall(targ):
-    print(targ)
+    if not path.exists(f"{INSTALL}/{targ}"):
+        print("ERR! Package doesn't exists.")
+        return
+
+    rmtree(f"{INSTALL}/{targ}")
+    remove(f"/usr/bin/{targ}")
