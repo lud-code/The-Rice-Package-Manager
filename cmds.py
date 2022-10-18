@@ -1,6 +1,6 @@
 from os import getcwd, remove, rmdir, rename, system, path
 from shutil import rmtree
-from requests import get
+from urllib import request
 from zipfile import ZipFile
 
 CWD = getcwd()
@@ -19,7 +19,7 @@ def extract(file, link):
         else:
             exit()
 
-    open(file, "wb").write(get(link).content)
+    request.urlretrieve(link, f"{INSTALL}/{file}.zip")
 
     with ZipFile(f"{INSTALL}/{file}.zip", "r") as zip:
         dir = zip.namelist()[0]
@@ -32,9 +32,9 @@ def fix(cmd, name, run):
     if cmd != "NA":
         system(f"cd {INSTALL}/{name} & {cmd}")
 
-    open(f"/usr/bin/{name}", "w").write(f"#!/usr/bin/env bash\n{run}")
+    open(f"/usr/bin/{name}", "w").write(f"#!/bin/sh\ncd {INSTALL}/{name}\n{run}\nwait")
     system(f"sudo chmod +x /usr/bin/{name}")
-
+    
 
 def install(targ):
     try:
@@ -42,7 +42,7 @@ def install(targ):
 
         pkg_run = lines[0].replace("DIR", f"{INSTALL}{targ}")
         pkg_link = lines[1]
-        pkg_ccmd = lines[2]
+        pkg_ccmd = lines[2].replace("DIR", f"{INSTALL}{targ}")
         depends = lines[3:]
 
         if depends != []:
@@ -55,7 +55,7 @@ def install(targ):
                 extract(f"{INSTALL}/{dep_name}.zip", dep_link)
                 fix(dep_ccmd, dep_name, dep_run)
 
-        extract(f"{INSTALL}/{targ}.zip", pkg_link)
+        extract(targ, pkg_link)
         fix(pkg_ccmd, targ, pkg_run)
 
     except FileNotFoundError:

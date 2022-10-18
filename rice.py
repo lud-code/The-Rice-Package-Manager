@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.1
 
 from argparse import ArgumentParser
 from cmds import install, uninstall, INSTALL, REPO
